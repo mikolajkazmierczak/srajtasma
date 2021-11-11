@@ -1,0 +1,36 @@
+{
+  "name": "srajtasma",
+  "version": "1.0.0",
+  "description": "An amazing web app for managing the household budget.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikolajkazmierczak/srajtasma.git"
+  },
+  "author": "Mikołaj Kaźmierczak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikolajkazmierczak/srajtasma/issues"
+  },
+  "homepage": "https://github.com/mikolajkazmierczak/srajtasma#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "luxon": "^2.0.2",
+    "mongoose": "^6.0.5",
+    "multer": "^1.4.3",
+    "prompts": "^2.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "prettier": "^2.4.0"
+  }
+}

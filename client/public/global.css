@@ -1,0 +1,120 @@
+:root {
+  --main-0: #6bc9ff;
+  --main-1: #0c6fb1;
+  --red-0: #ff2828;
+  --red-1: #bd1414;
+  --grey-0: #ffffff;
+  --grey-1: #e6e6e6;
+  --grey-2: #bfbfbf;
+  --grey-3: #808080;
+  --grey-4: #404040;
+  --grey-5: #000000;
+  --scroll-thumb: var(--grey-2);
+  --scroll-track: var(--grey-0);
+  --border: solid 1px var(--grey-2);
+  --border-focus: solid 1px var(--main-0);
+  --border-radius: 10px;
+  --shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  --header-size: clamp(40px, 6vh, 60px);
+  --button-size: clamp(60px, 15vh, 100px);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: var(--grey-4);
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--grey-0);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3 {
+  font-size: 1.1em;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--scroll-track);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--scroll-thumb);
+}
+
+label {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: start;
+}
+label.checkbox {
+  flex-flow: row;
+  justify-content: start;
+  align-items: center;
+}
+
+label > span {
+  display: block;
+  padding: 5px 7px;
+}
+
+input,
+textarea {
+  border-radius: 0;
+  border: var(--border);
+  padding: 5px 7px;
+  width: 100%;
+}
+input[type='checkbox'] {
+  cursor: pointer;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  border: none;
+  accent-color: var(--main-1);
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  background-color: var(--main-0);
+  color: var(--grey-0);
+}
+button > img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+button:hover {
+  background-color: var(--main-1);
+}
