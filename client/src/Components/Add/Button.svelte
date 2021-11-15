@@ -1,25 +1,37 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { showPanel, open, close } from './product.js';
+  import { showForm, open, close } from './form.js';
+  import { showUsersList, usersList } from '$c/usersList.js';
+  import { users } from '$src/users.js';
 
   const dispatch = createEventDispatcher();
+  $: centered = !$showForm || $showUsersList;
 </script>
 
-<div class="button {$showPanel ? 'left' : 'center'} cancel" on:click={close}>
+<div
+  class="button {centered ? 'center' : 'left'} cancel"
+  on:click={() => {
+    dispatch('exit');
+    close();
+  }}
+>
   <img src="/icons/no.svg" alt="cancel" />
 </div>
 
 <div
-  class="button {$showPanel ? 'right' : 'center'}"
+  class="button {centered ? 'center' : 'right'}"
   on:click={() => {
-    if ($showPanel) {
+    if ($showUsersList) {
+      dispatch('closeUsersList');
+    } else if ($showForm) {
       dispatch('save');
     } else {
+      $usersList = $users.map(user => user._id);
       open();
     }
   }}
 >
-  {#if $showPanel}
+  {#if $showForm}
     <img src="/icons/yes.svg" alt="save item" />
   {:else}
     <img src="/icons/plus.svg" alt="add item" />

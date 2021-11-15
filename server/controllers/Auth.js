@@ -3,27 +3,19 @@ const { User } = require('../models');
 
 function startSession(req, user) {
   req.session._id = user._id;
-  req.session.first_name = user.first_name;
-  req.session.last_name = user.last_name;
+  req.session.firstName = user.firstName;
+  req.session.lastName = user.lastName;
 }
-
-exports.getUser = req => {
-  return {
-    _id: req.session._id,
-    first_name: req.session.first_name,
-    last_name: req.session.last_name,
-  };
-};
 
 exports.register = (req, res) => {
   User.findOne({ phone: req.body.phone }, (err, user) => {
     if (err) return res.status(500).send({ error: err });
-    if (user) return res.status(404).send({ error: 'User already exists.' });
+    if (user) return res.status(403).send({ error: 'User already exists.' });
     User.create(
       {
         phone: req.body.phone,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
       },
       (err, user) => {
@@ -42,13 +34,11 @@ exports.login = (req, res) => {
     if (!user) return res.status(404).send({ error: 'User not found.' });
 
     // check if the password is valid
-    const isPasswordValid = bcrypt.compareSync(
-      req.body.password,
-      user.password
-    );
+    const password = req.body.password;
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
 
     if (!isPasswordValid)
-      return res.status(401).send({ error: 'Password is invalid.' });
+      return res.status(400).send({ error: 'Password is invalid.' });
 
     startSession(req, user);
     return res.status(200).send({ message: 'Logged in! Authenticated.' });

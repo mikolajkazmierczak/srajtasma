@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const { DateTime } = require('luxon');
 
 const { CLIENT_ORIGIN, SESSION_SECRET_KEY } = process.env;
+console.log(`Accepted origin: ${CLIENT_ORIGIN}`);
 
 const app = express();
 app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
@@ -19,6 +20,8 @@ app.use(
   session({
     secret: SESSION_SECRET_KEY,
     cookie: { maxAge: COOKIE_AGE_MS },
+    resave: false, // dependent on the database
+    saveUninitialized: true,
   })
 );
 
@@ -30,8 +33,10 @@ app.get('/', verifyLogin, (req, res) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/user', require('./routes/user'));
-app.use('/product', require('./routes/product'));
+app.use('/receipt', require('./routes/receipt'));
+app.use('/request', require('./routes/request'));
 
-console.log(DateTime.now().plus({ minutes: 5 }).toISO());
+console.log(DateTime.now().toISO());
+// console.log(DateTime.now().plus({ minutes: 5 }).toISO());
 
 module.exports = app;

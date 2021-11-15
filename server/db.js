@@ -10,8 +10,8 @@ function init() {
     if (!err && count == 0) {
       const questions = [
         { type: 'number', name: 'phone', message: 'Phone?' },
-        { type: 'text', name: 'first_name', message: 'First name?' },
-        { type: 'text', name: 'last_name', message: 'Last name?' },
+        { type: 'text', name: 'firstName', message: 'First name?' },
+        { type: 'text', name: 'lastName', message: 'Last name?' },
         { type: 'password', name: 'password', message: 'Password?' },
       ];
       const userInput = await prompts(questions);
@@ -32,7 +32,7 @@ exports.connect = () => {
       useUnifiedTopology: true,
     })
     .then(() => {
-      console.log('Successfully connected to database');
+      console.log('Connected to database.');
       init();
     })
     .catch(err => {

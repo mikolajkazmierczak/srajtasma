@@ -1,6 +1,5 @@
-const { getModelName } = require('./utils');
+const { getUser, getModelName } = require('./__utils');
 const name = getModelName;
-const { getUser } = require('./Auth.js');
 
 exports.create = (req, res, model) => {
   /* req.body: {document} OR [ {document} ] */
@@ -10,15 +9,13 @@ exports.create = (req, res, model) => {
     if (typeof req.body === 'Array') {
       // add created_by and updated_by to each document
       let docs = req.body;
-      docs.forEach(
-        doc => (doc = { ...doc, created_by: user, updated_by: user })
-      );
+      docs.forEach(doc => (doc = { ...doc, createdBy: user, updatedBy: user }));
       model.insertMany(docs, err => {
         if (err) return res.status(500).send({ error: err });
         return res.status(201).send({ message: `${name(model)}s created.` });
       });
     } else {
-      model.create({ ...req.body, created_by: user, updated_by: user }, err => {
+      model.create({ ...req.body, createdBy: user, updatedBy: user }, err => {
         if (err) return res.status(500).send({ error: err });
         return res.status(201).send({ message: `${name(model)} created.` });
       });
@@ -35,7 +32,7 @@ exports.updateMany = (req, res, model) => {
     req.body.forEach(elem => {
       model.findByIdAndUpdate(
         elem._id,
-        { ...elem.updates, updated_by: user },
+        { ...elem.updates, updatedBy: user },
         (err, document) => {
           if (err) return res.status(500).send({ error: err });
           if (!document)
@@ -55,7 +52,7 @@ exports.updateById = (req, res, model) => {
   const user = getUser(req);
   model.findByIdAndUpdate(
     req.params.id,
-    { ...req.body, updated_by: user },
+    { ...req.body, updatedBy: user },
     (err, document) => {
       if (err) return res.status(500).send({ error: err });
       if (!document)

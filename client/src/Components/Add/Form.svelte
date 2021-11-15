@@ -1,7 +1,8 @@
 <script>
   import { fade, fly } from 'svelte/transition';
   import emojiRegex from 'emoji-regex';
-  import { showPanel, close, title, emoji, price, note } from './product.js';
+  import { showForm, close, title, emoji, price, note } from './form.js';
+  import { open, amount } from '../usersList.js';
 
   export let error;
   let emojiError;
@@ -29,7 +30,7 @@
   }
 </script>
 
-{#if $showPanel}
+{#if $showForm}
   <div class="wrapper">
     <div class="bg" transition:fade={{ duration: 200 }} on:click={close} />
     <div class="panel" transition:fly={{ y: 150, duration: 200 }}>
@@ -46,7 +47,10 @@
         </label>
       </div>
       <div class="price-wrapper">
-        <div />
+        <label class="users">
+          <span>Kto</span>
+          <button on:click={open}>{$amount}</button>
+        </label>
         <label class="price">
           <span>Cena</span>
           <input type="number" step="0.01" min="0.00" bind:value={$price} />
@@ -54,7 +58,7 @@
       </div>
       <label class="note">
         <span>Notatka</span>
-        <textarea rows="3" bind:value={$note} />
+        <textarea rows="2" bind:value={$note} />
       </label>
     </div>
   </div>

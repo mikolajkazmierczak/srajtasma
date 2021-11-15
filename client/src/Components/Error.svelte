@@ -1,5 +1,5 @@
 <script>
-  import { error } from './error.js';
+  import { error } from '$src/error.js';
 </script>
 
 <div class="wrapper">

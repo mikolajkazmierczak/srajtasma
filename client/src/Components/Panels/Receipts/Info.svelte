@@ -1,25 +1,25 @@
 <script>
-  import { to_currency } from '../utils.js';
+  import { toCurrency } from '$src/utils.js';
   let users = [
     {
-      first_name: 'Mikołaj',
-      last_name: 'Kaźmierczak',
-      balance: to_currency(-25.6),
+      firstName: 'Mikołaj',
+      lastName: 'Kaźmierczak',
+      balance: toCurrency(-25.6),
     },
     {
-      first_name: 'Zuzia',
-      last_name: 'Kaźmierczak',
-      balance: to_currency(30.46),
+      firstName: 'Zuzia',
+      lastName: 'Kaźmierczak',
+      balance: toCurrency(30.46),
     },
     {
-      first_name: 'Jędrzej',
-      last_name: 'Jamnicki',
-      balance: to_currency(-15.25),
+      firstName: 'Jędrzej',
+      lastName: 'Jamnicki',
+      balance: toCurrency(-15.25),
     },
     {
-      first_name: 'Martyna',
-      last_name: 'Jeziorna',
-      balance: to_currency(10.39),
+      firstName: 'Martyna',
+      lastName: 'Jeziorna',
+      balance: toCurrency(10.39),
     },
   ];
   function sort_users() {
@@ -32,9 +32,9 @@
 {#if users.length != []}
   <div class="wrapper">
     <h2>Tablica wstydu</h2>
-    {#each users as { first_name, last_name, balance }}
+    {#each users as { firstName, lastName, balance }}
       <p>
-        <span>{first_name} {last_name}</span>
+        <span>{firstName} {lastName}</span>
         <span class="price {balance > 0 ? '' : 'red'}">{balance}</span>
       </p>
     {/each}

@@ -1,3 +1,3 @@
-export function to_currency(amount) {
+export function toCurrency(amount) {
   return amount.toFixed(2);
 }

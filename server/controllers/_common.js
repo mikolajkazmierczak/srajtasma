@@ -1,4 +1,4 @@
-const { getModelName } = require('./utils');
+const { getModelName } = require('./__utils');
 const name = getModelName;
 
 exports.create = (req, res, model) => {

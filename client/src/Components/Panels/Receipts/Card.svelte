@@ -1,16 +1,17 @@
 <script>
   import Clipboard from 'svelte-clipboard';
-  import { to_currency } from '$src/utils.js';
-  let button_clicked = false;
-  let price_clicked = false;
-  export let users_amount;
+  import { toCurrency } from '$src/utils.js';
+  let buttonClicked = false;
+  let priceClicked = false;
   export let title;
   export let price;
-  const price_single = to_currency(price / users_amount);
   export let note;
   export let emoji;
-  export let buyer;
-  export let paid = [];
+  export let createdBy;
+  export let users;
+  export let usersPaid;
+  const usersAmount = users.length;
+  const priceSingle = toCurrency(price / usersAmount);
 </script>
 
 <div class="product">
@@ -23,8 +24,8 @@
       <img src="/icons/price.svg" alt="price" />{price}
     </div>
     <div class="icon buyer">
-      <img src="/icons/person.svg" alt="buyer" />{buyer.first_name}
-      {buyer.last_name}
+      <img src="/icons/person.svg" alt="buyer" />{createdBy.firstName}
+      {createdBy.lastName}
     </div>
     {#if note}
       <div class="note">
@@ -32,44 +33,46 @@
         <p>{note}</p>
       </div>
     {/if}
-    <div class="buttons">
-      <Clipboard
-        text={buyer.phone}
-        let:copy
-        on:copy={() => {
-          button_clicked = true;
-          setTimeout(() => {
-            button_clicked = false;
-          }, 2000);
-        }}
-      >
-        <button on:click={copy}>
-          {#if button_clicked}
-            <img src="/icons/copy.svg" alt="copied" />
-          {:else}
-            <img src="/icons/payment.svg" alt="payment" />{buyer.phone}
-          {/if}
-        </button>
-      </Clipboard>
-      <Clipboard
-        text={price_single}
-        let:copy
-        on:copy={() => {
-          price_clicked = true;
-          setTimeout(() => {
-            price_clicked = false;
-          }, 2000);
-        }}
-      >
-        <button class="charge" on:click={copy}>
-          {#if price_clicked}
-            <img src="/icons/copy.svg" alt="copied" />
-          {:else}
-            <img src="/icons/money.svg" alt="money" />{price_single}
-          {/if}
-        </button>
-      </Clipboard>
-    </div>
+    {#if users.length > 0}
+      <div class="buttons">
+        <Clipboard
+          text={createdBy.phone}
+          let:copy
+          on:copy={() => {
+            buttonClicked = true;
+            setTimeout(() => {
+              buttonClicked = false;
+            }, 2000);
+          }}
+        >
+          <button on:click={copy}>
+            {#if buttonClicked}
+              <img src="/icons/copy.svg" alt="copied" />
+            {:else}
+              <img src="/icons/payment.svg" alt="payment" />{createdBy.phone}
+            {/if}
+          </button>
+        </Clipboard>
+        <Clipboard
+          text={priceSingle}
+          let:copy
+          on:copy={() => {
+            priceClicked = true;
+            setTimeout(() => {
+              priceClicked = false;
+            }, 2000);
+          }}
+        >
+          <button class="charge" on:click={copy}>
+            {#if priceClicked}
+              <img src="/icons/copy.svg" alt="copied" />
+            {:else}
+              <img src="/icons/money.svg" alt="money" />{priceSingle}
+            {/if}
+          </button>
+        </Clipboard>
+      </div>
+    {/if}
   </div>
 </div>
 

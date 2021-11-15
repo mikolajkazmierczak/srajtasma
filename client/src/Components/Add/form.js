@@ -1,14 +1,15 @@
 import { writable } from 'svelte/store';
 
-export const showPanel = writable(false);
+export const showForm = writable(false);
 export function open() {
-  showPanel.set(true);
+  showForm.set(true);
 }
 export function close() {
-  showPanel.set(false);
+  showForm.set(false);
 }
 
 export const title = writable(null);
 export const price = writable(null);
 export const note = writable(null);
 export const emoji = writable('🧻');
+export const users = writable([]);
