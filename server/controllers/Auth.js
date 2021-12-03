@@ -22,7 +22,7 @@ exports.register = (req, res) => {
         if (err) return res.status(500).send({ error: err });
 
         startSession(req, user);
-        return res.status(200).send({ message: 'Registered! Authenticated.' });
+        return res.status(201).send({ message: 'Registered! Authenticated.' });
       }
     );
   });

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon .",
-    "start": "node ."
+    "test": "jest",
+    "start": "node .",
+    "start_linux": "NODE_ENV=production node ."
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,10 @@
     "prompts": "^2.4.1"
   },
   "devDependencies": {
+    "axios": "^0.24.0",
+    "jest": "^27.4.3",
     "nodemon": "^2.0.12",
-    "prettier": "^2.4.0"
+    "prettier": "^2.4.0",
+    "supertest": "^6.1.6"
   }
 }
