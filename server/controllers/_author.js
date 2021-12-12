@@ -15,10 +15,15 @@ exports.create = (req, res, model) => {
         return res.status(201).send({ message: `${name(model)}s created.` });
       });
     } else {
-      model.create({ ...req.body, createdBy: user, updatedBy: user }, err => {
-        if (err) return res.status(500).send({ error: err });
-        return res.status(201).send({ message: `${name(model)} created.` });
-      });
+      model.create(
+        { ...req.body, createdBy: user, updatedBy: user },
+        (err, doc) => {
+          if (err) return res.status(500).send({ error: err });
+          return res
+            .status(201)
+            .send({ message: `${name(model)} created.`, _id: doc._id });
+        }
+      );
     }
   } catch (err) {
     return res.status(500).send({ error: err });
