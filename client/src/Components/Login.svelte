@@ -1,8 +1,8 @@
 <script>
   import { authorized, fetchREST } from '../REST.js';
 
-  let phone = '728266518';
-  let password = 'iamironman';
+  let phone = '';
+  let password = '';
   let rememberme = false;
 
   let text = 'Zaloguj';

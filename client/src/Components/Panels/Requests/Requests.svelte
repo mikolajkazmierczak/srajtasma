@@ -5,4 +5,10 @@
 
 <!-- <Info />
 <Cards/> -->
-dupa
+<div>tbd</div>
+
+<style>
+  div {
+    padding: 20px;
+  }
+</style>

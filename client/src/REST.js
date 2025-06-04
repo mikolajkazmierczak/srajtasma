@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 export const authorized = writable(false);
 
 export async function fetchREST(method, url, json) {
-  let base_url = 'http://192.168.1.10:8000';
+  let base_url = 'http://localhost:8000';
   let options = {
     method: method,
     credentials: 'include',

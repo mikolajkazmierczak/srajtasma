@@ -2,23 +2,23 @@
   import { toCurrency } from '$src/utils.js';
   let users = [
     {
-      firstName: 'Mikołaj',
-      lastName: 'Kaźmierczak',
+      firstName: 'Jan',
+      lastName: 'Kowalski',
       balance: toCurrency(-25.6),
     },
     {
-      firstName: 'Zuzia',
-      lastName: 'Kaźmierczak',
+      firstName: 'Edytor',
+      lastName: 'Tekstu',
       balance: toCurrency(30.46),
     },
     {
-      firstName: 'Jędrzej',
-      lastName: 'Jamnicki',
+      firstName: 'Kuba',
+      lastName: 'Rozpruwacz',
       balance: toCurrency(-15.25),
     },
     {
-      firstName: 'Martyna',
-      lastName: 'Jeziorna',
+      firstName: 'Paweł',
+      lastName: 'Drugi',
       balance: toCurrency(10.39),
     },
   ];
